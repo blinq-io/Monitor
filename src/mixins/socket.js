@@ -214,13 +214,15 @@ export default {
 
                     if (this.monitorList[data.monitorID] !== undefined) {
                         if (data.status === 0) {
-                            toast.error(`[${this.monitorList[data.monitorID].name}] [DOWN] ${data.msg}`, {
-                                timeout: getToastErrorTimeout(),
-                            });
+                            // toast.error(`[${this.monitorList[data.monitorID].name}] [DOWN] ${data.msg}`, {
+                            //     timeout: getToastErrorTimeout(),
+                            // });
+                            console.log("Down")
                         } else if (data.status === 1) {
-                            toast.success(`[${this.monitorList[data.monitorID].name}] [Up] ${data.msg}`, {
-                                timeout: getToastSuccessTimeout(),
-                            });
+                            // toast.success(`[${this.monitorList[data.monitorID].name}] [Up] ${data.msg}`, {
+                            //     timeout: getToastSuccessTimeout(),
+                            // });
+                            console.log("Up")
                         } else {
                             toast(`[${this.monitorList[data.monitorID].name}] ${data.msg}`);
                         }

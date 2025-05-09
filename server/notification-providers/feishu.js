@@ -25,29 +25,29 @@ class Feishu extends NotificationProvider {
 
             if (heartbeatJSON["status"] === DOWN) {
                 let downdata = {
-                    msg_type: "interactive",
-                    card: {
-                        config: {
-                            update_multi: false,
-                            wide_screen_mode: true,
-                        },
-                        header: {
-                            title: {
-                                tag: "plain_text",
-                                content: "UptimeKuma Alert: [Down] " + monitorJSON["name"],
-                            },
-                            template: "red",
-                        },
-                        elements: [
-                            {
-                                tag: "div",
-                                text: {
-                                    tag: "lark_md",
-                                    content: getContent(heartbeatJSON),
-                                },
-                            }
-                        ]
-                    }
+                    msg_type: "interactive"
+                    // card: {
+                    //     config: {
+                    //         update_multi: false,
+                    //         wide_screen_mode: true,
+                    //     },
+                    //     header: {
+                    //         title: {
+                    //             tag: "plain_text",
+                    //             content: "UptimeKuma Alert: [Down] " + monitorJSON["name"],
+                    //         },
+                    //         template: "red",
+                    //     },
+                    //     elements: [
+                    //         {
+                    //             tag: "div",
+                    //             text: {
+                    //                 tag: "lark_md",
+                    //                 content: getContent(heartbeatJSON),
+                    //             },
+                    //         }
+                    //     ]
+                    // }
                 };
                 await axios.post(notification.feishuWebHookUrl, downdata);
                 return okMsg;
@@ -55,29 +55,29 @@ class Feishu extends NotificationProvider {
 
             if (heartbeatJSON["status"] === UP) {
                 let updata = {
-                    msg_type: "interactive",
-                    card: {
-                        config: {
-                            update_multi: false,
-                            wide_screen_mode: true,
-                        },
-                        header: {
-                            title: {
-                                tag: "plain_text",
-                                content: "UptimeKuma Alert: [UP] " + monitorJSON["name"],
-                            },
-                            template: "green",
-                        },
-                        elements: [
-                            {
-                                tag: "div",
-                                text: {
-                                    tag: "lark_md",
-                                    content: getContent(heartbeatJSON),
-                                },
-                            },
-                        ]
-                    }
+                    msg_type: "interactive"
+                    // card: {
+                    //     config: {
+                    //         update_multi: false,
+                    //         wide_screen_mode: true,
+                    //     },
+                    //     header: {
+                    //         title: {
+                    //             tag: "plain_text",
+                    //             content: "UptimeKuma Alert: [UP] " + monitorJSON["name"],
+                    //         },
+                    //         template: "green",
+                    //     },
+                    //     elements: [
+                    //         {
+                    //             tag: "div",
+                    //             text: {
+                    //                 tag: "lark_md",
+                    //                 content: getContent(heartbeatJSON),
+                    //             },
+                    //         },
+                    //     ]
+                    // }
                 };
                 await axios.post(notification.feishuWebHookUrl, updata);
                 return okMsg;
