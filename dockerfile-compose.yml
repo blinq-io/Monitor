@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    container_name: blinqio-monitor-test1
+    ports:
+      - "3001:3001"  # Expose port 3001
+ # Optional: Mount the current directory to /app inside the container
+    restart: unless-stopped  # Restart the container unless it's explicitly stopped

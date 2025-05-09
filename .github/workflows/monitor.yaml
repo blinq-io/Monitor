@@ -1,0 +1,53 @@
+name: Monitor
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USER }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+      - name: Build and push Docker logic image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: blinqio/monitor:latest
+
+      - name: Set up AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-north-1
+      - name: Connect to EC2 instance
+        uses: appleboy/ssh-action@master
+        with:
+            host: ${{ secrets.EC2_MONITOR_IP }}
+            username: ec2-user
+            key: ${{ secrets.EC2_MONITOR_KEY }}
+            script: |
+
+                docker pull blinqio/monitor:latest
+                
+                # Stop the running container (if any)
+                docker stop monitor-container || true
+                docker rm monitor-container || true
+
+                # Run the new container with the latest image
+                docker run -d --name monitor-container -p 3001:3001 blinqio/monitor:latest
+   
