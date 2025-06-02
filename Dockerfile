@@ -13,6 +13,7 @@ RUN npm install --force
 # Copy the rest of the application files to the container
 COPY . .
 
+
 # Build the application
 RUN npm run build
 
