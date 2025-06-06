@@ -9,6 +9,7 @@
     </div>
 </template>
 
+
 <script>
 /**
  * Generic select field with a customizable action on the right.
