@@ -38,7 +38,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
             host: ${{ secrets.EC2_MONITOR_IP }}
-            username: ec2-user
+            username: ubuntu
             key: ${{ secrets.EC2_MONITOR_KEY }}
             script: |
 
