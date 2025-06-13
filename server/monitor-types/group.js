@@ -11,6 +11,7 @@ class GroupMonitorType extends MonitorType {
     async check(monitor, heartbeat, _server) {
         const children = await Monitor.getChildren(monitor.id);
 
+        
         if (children.length > 0) {
             heartbeat.status = UP;
             heartbeat.msg = "All children up and running";

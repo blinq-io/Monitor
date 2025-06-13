@@ -49,5 +49,6 @@ jobs:
                 docker rm monitor-container || true
 
                 # Run the new container with the latest image
-                docker run -d --name monitor-container -p 3001:3001 blinqio/monitor:latest
+                docker run -d --name monitor-container -p 3001:3001 -e UPTIME_KUMA_ALLOW_ALL_CHROME_EXEC=1 blinqio/monitor:latest
+
    
