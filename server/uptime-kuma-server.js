@@ -328,24 +328,7 @@ class UptimeKumaServer {
      * @returns {void}
      */
     static errorLog(error, outputToConsole = true) {
-        const errorLogStream = fs.createWriteStream(path.join(Database.dataDir, "/error.log"), {
-            flags: "a"
-        });
-
-        errorLogStream.on("error", () => {
-            log.info("", "Cannot write to error.log");
-        });
-
-        if (errorLogStream) {
-            const dateTime = R.isoDateTime();
-            errorLogStream.write(`[${dateTime}] ` + util.format(error) + "\n");
-
-            if (outputToConsole) {
-                console.error(error);
-            }
-        }
-
-        errorLogStream.end();
+        return;
     }
 
     /**
