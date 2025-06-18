@@ -49,7 +49,8 @@ jobs:
                 docker rm monitor-container || true
 
                 # Run the new container with the latest image
-                docker run -d --name monitor-container -p 3001:3001 --restart unless-stopped --memory="2g" --cpus="1.0" i
+                docker run -d --name monitor-container -p 3001:3001 --restart unless-stopped --memory="2g" --cpus="1.0" blinqio/monitor:latest
+
  
 
    
